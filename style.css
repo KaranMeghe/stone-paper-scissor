@@ -19,7 +19,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   background: #fff;
-  color: #333;
+  color: var(--dark-color);
 }
 
 .container {
@@ -38,7 +38,7 @@ body {
 .restart-btn {
   display: none;
   background: var(--light-color);
-  color: #333;
+  color: var(--dark-color);
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   cursor: pointer;
@@ -133,6 +133,8 @@ body {
   margin-top: 1rem;
 }
 
+
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -146,8 +148,22 @@ body {
 
 @media (max-width: 700px) {
   .choice {
-    font-size: 110px;
+    font-size: 20px;
   }
+  
+  .modal-content {
+    background: #fff;
+    text-align: center;
+    margin: 10% auto;
+    width: 200px;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+  
+
 }
 
 @media (max-width: 500px) {
