@@ -4,8 +4,7 @@ const score = document.getElementById('score');
 const restart = document.getElementById('restart');
 const result = document.getElementById('result');
 const modal = document.querySelector('.modal');
-const playerScore = document.getElementById('pScore');
-const computerScore = document.getElementById('cScore');
+
 
 // Scoreboard
 const scoreBoard = {
@@ -89,7 +88,11 @@ function checkWinner(){
     <p>Computer score : ${scoreBoard.computer}</p>
     <p>Player score : ${scoreBoard.player}</p>`
   } 
-  
+
+  // if player or computer wins the game restart game again
+  if(scoreBoard.player === 5 || scoreBoard.computer === 5){
+    restartGame();
+  }
 }
 
 // clear modal
