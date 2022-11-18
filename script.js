@@ -4,22 +4,14 @@ const score = document.getElementById('score');
 const restart = document.getElementById('restart');
 const result = document.getElementById('result');
 const modal = document.querySelector('.modal');
+const playerScore = document.getElementById('pScore');
+const computerScore = document.getElementById('cScore');
 
 // Scoreboard
 const scoreBoard = {
   player: 0,
   computer: 0
 };
-
-// Play Game function()
-const game = (event) => {
-  restart.style.display = 'inline-block';
-  const playerChoice = event.target.id;
-  const computerChoice = getComputerChoice();
-  const winner = getWinner(playerChoice,computerChoice);
-  showWinner(winner,computerChoice);
-  console.log(playerChoice,computerChoice,winner);
-}
 
 // Get Computer Choice()
 const getComputerChoice = () => {
@@ -53,7 +45,7 @@ if(p === 'rock' && c === 'scissors') return 'player';
 // Display Winner
 const showWinner = (winner, computerChoice) => {
 // player wins
-if(winner === 'player'){
+if(winner === 'player'){ 
   scoreBoard.player++;
   // display modal result
   result.innerHTML = `<h1 class = 'text-win'>You Win</h1> 
@@ -68,7 +60,7 @@ if(winner === 'player'){
   <i class="fas fa-hand-${computerChoice} fa-10x"></i> 
   <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>`;
 
-} else {
+} else { 
   result.innerHTML = `<h1>Its Draw</h1> 
   <i class="fas fa-hand-${computerChoice} fa-10x"></i> 
   <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>`;
@@ -81,6 +73,23 @@ if(winner === 'player'){
  `;
 
  modal.style.display = 'block';
+}
+
+// check winner of the game
+function checkWinner(){
+  if(scoreBoard.player === 5){
+    result.innerHTML = `<h1>Player Wins the game</h1> 
+    <i class="fas fa-sharp fa-solid fa-user fa-5x"></i>
+    <p>Player score : ${scoreBoard.player}</p>
+    <p>Computer score : ${scoreBoard.computer}</p>
+
+  `} else if(scoreBoard.computer === 5){
+    result.innerHTML = `<h1>Computer Wins the game</h1>
+    <i class="fas fa-sharp fa-microchip fa-5x"></i>
+    <p>Computer score : ${scoreBoard.computer}</p>
+    <p>Player score : ${scoreBoard.player}</p>`
+  } 
+  
 }
 
 // clear modal
@@ -100,6 +109,19 @@ score.innerHTML = `
 `;
 restart.style.display = 'none';
 }
+
+
+// Play Game function()
+const game = (event) => {
+  restart.style.display = 'inline-block';
+   const playerChoice = event.target.id;
+   const computerChoice = getComputerChoice();
+   const winner = getWinner(playerChoice,computerChoice);
+   showWinner(winner,computerChoice);
+   checkWinner();
+}
+
+
 
 // Event Listner
 choices.forEach(choice => choice.addEventListener('click', game));
